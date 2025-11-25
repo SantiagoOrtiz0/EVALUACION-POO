@@ -53,3 +53,34 @@ class Cita implements ICita {
         return this.valor;
     }
 }
+class CitaGen extends Cita{
+    constructor(paciente: string, medico: string, fecha: Date, valor: number ){
+    super(paciente,medico,fecha,valor)
+    }
+    Calcularcosto(): number {
+        return this.valor;
+    }
+}
+class CitaEspecial extends Cita{
+    TarifaEspec:number;
+    constructor(paciente: string, medico: string, fecha: Date, valor: number, TarifaEspec:number){
+        super(paciente,medico,fecha,valor)
+        this.TarifaEspec= TarifaEspec;
+    }
+    Calcularcosto(): number {
+        return this.valor + this.TarifaEspec;
+    }
+}
+class Medico {
+    nombre:string;
+    especialidad:string;
+    tarifaBase:string;
+    constructor(nombre:string , especialidad:string , tarifaBase:string){
+        this.nombre = nombre;
+        this.especialidad = especialidad;
+        this.tarifaBase = tarifaBase;
+    }
+    mostrarPerfil():string {
+        return `Medico:${this.nombre} Especialidad:${this.especialidad} TarifaBase:${this.tarifaBase}`
+    }
+}
