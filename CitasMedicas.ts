@@ -51,50 +51,59 @@ class Cita implements ICita {
         return this.valor;
     }
 }
-class CitaGen extends Cita{
+class CitaGen extends Cita {
     TarifaAdicional: number;
-    constructor(paciente: string, medico: string, fecha: Date, valor: number, TarifaAdicional: number ){
-    super(paciente,medico,fecha,valor)
-    this.TarifaAdicional = TarifaAdicional;
+    constructor(paciente: string, medico: string, fecha: Date, valor: number, TarifaAdicional: number) {
+        super(paciente, medico, fecha, valor)
+        this.TarifaAdicional = TarifaAdicional;
     }
     Calcularcosto(): number {
         return this.valor + this.TarifaAdicional;
     }
 }
-class CitaEspecial extends Cita{
-    TarifaEspec:number;
-    constructor(paciente: string, medico: string, fecha: Date, valor: number, TarifaEspec:number){
-        super(paciente,medico,fecha,valor)
-        this.TarifaEspec= TarifaEspec;
+class CitaEspecial extends Cita {
+    TarifaEspec: number;
+    constructor(paciente: string, medico: string, fecha: Date, valor: number, TarifaEspec: number) {
+        super(paciente, medico, fecha, valor)
+        this.TarifaEspec = TarifaEspec;
     }
     Calcularcosto(): number {
         return this.valor + this.TarifaEspec;
     }
 }
 class Medico {
-    nombre:string;
-    especialidad:string;
-    tarifaBase:number;
-    constructor(nombre:string , especialidad:string , tarifaBase:number){
+    nombre: string;
+    especialidad: string;
+    tarifaBase: number;
+    constructor(nombre: string, especialidad: string, tarifaBase: number) {
         this.nombre = nombre;
         this.especialidad = especialidad;
         this.tarifaBase = tarifaBase;
     }
-    mostrarPerfil():string {
+    mostrarPerfil(): string {
         return `Medico:${this.nombre} Especialidad:${this.especialidad} TarifaBase:${this.tarifaBase}`
     }
 }
 
-const medico1=new Medico("Jeffry","Cardiologo",250000);
-    const medico2= new Medico("Santiago","Dermatologo",500000);
+const medico1 = new Medico("Jeffry", "Cardiologo", 250000);
+const medico2 = new Medico("Santiago", "Dermatologo", 500000);
 
-const Citas1 = new Cita("Carlos",medico1.nombre,new Date(),medico1.tarifaBase);
-const CitaEspecial1 = new CitaEspecial("Juana",medico2.nombre,new Date(),medico2.tarifaBase,100000);
-const CitaGen1 = new CitaGen("Andres",medico2.nombre,new Date(),medico2.tarifaBase, 80000);
+const Citas1 = new Cita("Carlos", medico1.nombre, new Date(), medico1.tarifaBase);
+const CitaEspecial1 = new CitaEspecial("Juana", medico2.nombre, new Date(), medico2.tarifaBase, 100000);
+const CitaGen1 = new CitaGen("Andres", medico2.nombre, new Date(), medico2.tarifaBase, 80000);
 
 let arrayCita = [];
-arrayCita.push(Citas1,CitaEspecial1,CitaGen1);
+arrayCita.push(Citas1, CitaEspecial1, CitaGen1);
+
+let arrayMedico = [];
+arrayMedico.push(medico1, medico2);
 
 arrayCita.forEach(element => {
-    console.log(element.mostrarresumen(element.paciente,element.medico, element.fecha, element.Calcularcosto()));
+    console.log(element.mostrarresumen(element.paciente, element.medico, element.fecha, element.Calcularcosto()));
 });
+
+arrayMedico.forEach(element => {
+    console.log(element.mostrarPerfil());
+});
+
+
